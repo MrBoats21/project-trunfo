@@ -33,7 +33,7 @@ class App extends React.Component {
 
   onSaveButtonClick = (event) => {
     event.preventDefault();
-    this.sendToColection();
+    this.sendToCollection();
     this.setState(() => ({
       cardName: '',
       cardDescription: '',
