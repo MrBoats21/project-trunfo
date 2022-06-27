@@ -50,3 +50,12 @@ img {
   font-size: 10;
   margin-right: 30px;
 }
+
+.colection {
+  background-color: rgb(183, 57, 82);
+  display: flex;
+}
+
+.colection .card {
+  margin: 20px;
+}

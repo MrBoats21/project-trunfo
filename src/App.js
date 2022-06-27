@@ -9,14 +9,41 @@ class App extends React.Component {
     this.state = {
       cardName: '',
       cardDescription: '',
-      cardAttr1: '',
-      cardAttr2: '',
-      cardAttr3: '',
+      cardAttr1: '0',
+      cardAttr2: '0',
+      cardAttr3: '0',
       cardImage: '',
-      cardRare: '',
+      cardRare: 'normal',
       cardTrunfo: false,
       isSaveButtonDisabled: true,
+      cards: [],
     };
+  }
+
+  sendToCollection = () => {
+    const { cards, ...collectionItem } = this.state;
+    console.log(collectionItem);
+    this.setState((savedItem) => {
+      console.log(savedItem);
+      return {
+        cards: [...cards, savedItem],
+      };
+    });
+  }
+
+  onSaveButtonClick = (event) => {
+    event.preventDefault();
+    this.sendToColection();
+    this.setState(() => ({
+      cardName: '',
+      cardDescription: '',
+      cardImage: '',
+      cardAttr1: 0,
+      cardAttr2: 0,
+      cardAttr3: 0,
+      cardRare: 'normal',
+      isSaveButtonDisabled: false,
+    }));
   }
 
   btnChecker() {
@@ -53,6 +80,7 @@ class App extends React.Component {
       cardRare,
       cardTrunfo,
       isSaveButtonDisabled,
+      cards,
     } = this.state;
 
     const onInputChange = ({ target }) => {
@@ -78,7 +106,7 @@ class App extends React.Component {
             cardTrunfo={ cardTrunfo }
             isSaveButtonDisabled={ isSaveButtonDisabled }
             onInputChange={ onInputChange }
-            onSaveButtonClick=""
+            onSaveButtonClick={ this.onSaveButtonClick }
           />
           <Card
             cardName={ cardName }
@@ -91,6 +119,28 @@ class App extends React.Component {
             cardTrunfo={ cardTrunfo }
           />
         </div>
+
+        <div className="colection">
+          {
+            cards.map((card) => (
+              <div key={ card.cardName } className="card">
+                <p key={ card.cardName }>
+                  { card.cardName }
+                </p>
+                <img src={ card.cardImage } alt="imagem" />
+                <p key={ card.cardDescription }>{ card.cardDescription }</p>
+                <section className="habs">
+                  <p>{ `str____________________${card.cardAttr1}` }</p>
+                  <p>{ `agl____________________${card.cardAttr2}` }</p>
+                  <p>{ `int____________________${card.cardAttr3}` }</p>
+                </section>
+                <p>{card.cardRare}</p>
+                { card.cardTrunfo && <h4>Super Trunfo</h4> }
+              </div>
+            ))
+          }
+        </div>
+
       </>
     );
   }
