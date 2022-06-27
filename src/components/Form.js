@@ -79,6 +79,7 @@ class Form extends React.Component {
         <input
           type="button"
           data-testid="save-button"
+          value="Salvar carta"
           disabled={ isSaveButtonDisabled }
           onClick={ onSaveButtonClick }
         />
