@@ -21,20 +21,17 @@ class Card extends React.Component {
         <p data-testid="description-card">{cardDescription}</p>
         <section className="habs">
           <p data-testid="attr1-card">
-            <span>str: </span>
-            {cardAttr1}
+            { `str____________________${cardAttr1}` }
           </p>
           <p data-testid="attr2-card">
-            <span>agl: </span>
-            {cardAttr2}
+            { `agl____________________${cardAttr2}` }
           </p>
           <p data-testid="attr3-card">
-            <span>int: </span>
-            {cardAttr3}
+            { `int____________________${cardAttr3}` }
           </p>
         </section>
         <p data-testid="rare-card">{cardRare}</p>
-        { cardTrunfo === true && <p data-testid="trunfo-card">Super Trunfo</p> }
+        { cardTrunfo && <h4 data-testid="trunfo-card">Super Trunfo</h4> }
       </div>
     );
   }
